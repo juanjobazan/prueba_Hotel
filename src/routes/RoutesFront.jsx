@@ -8,6 +8,7 @@ import LoginPage from '../pages/LoginPage'
 import UserPage from '../pages/UserPage'
 import AdminPage from '../pages/AdminPage'
 import ErrorPage from '../pages/ErrorPage'
+import FooterC from '../components/FooterC'
 
 const RoutesFront = () => {
   return (
@@ -23,6 +24,7 @@ const RoutesFront = () => {
       <Route path='/admin' element={<AdminPage/>}/>
       <Route path='/*' element={<ErrorPage/>}/>
     </Routes>
+    <FooterC />
    </>
   )
 }

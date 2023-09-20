@@ -1,0 +1,17 @@
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+
+}
+
+.footer {
+    background-color: #b1ad9f;
+    color: #fdf8e9;
+    font-family: 'Edu NSW ACT Foundation', cursive;
+
+}
+
