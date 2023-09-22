@@ -1,4 +1,5 @@
 .formulario{
     font-family: 'Edu NSW ACT Foundation', cursive;
-    background-color: #c4c0b2;
+    background-color: #fdf8e9;
+    display: flex;
 }
