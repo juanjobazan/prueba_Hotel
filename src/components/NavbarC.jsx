@@ -1,34 +1,36 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { NavLink } from 'react-router-dom';
+import '../css/Navbar.css'
+
 
 const NavbarC = () => {
   return (
-<>
-<Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <Navbar expand="lg" className="color-nav-personalizado">
+        <Container>
+          <Navbar.Brand to="/"><img src='https://nossahotel.com/wp-content/uploads/2022/12/NOSSA-logo-wh-29.png' width="100" height="60"></img></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavLink to="/user" className={'nav-link'}>Inicio</NavLink>
+              <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
+              <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
+              <NavLink to="/" className={'nav-link'}>Habitaciones</NavLink>
+              <NavLink to="/" className={'nav-link'}>Servicios</NavLink>
+            </Nav>
+
+
+            <Nav className="ms-auto">
+              <NavLink to="/login" className={'nav-link'}>Iniciar Sesion</NavLink>
+              <NavLink to="/register" className={'nav-link'}>Registrarse</NavLink>
+            </Nav>
+
+
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   )
 }
