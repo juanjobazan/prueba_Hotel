@@ -10,11 +10,11 @@ const NavbarC = () => {
     <>
       <Navbar expand="lg" className="color-nav-personalizado">
         <Container>
-          <Navbar.Brand to="/"><img src='https://nossahotel.com/wp-content/uploads/2022/12/NOSSA-logo-wh-29.png' width="100" height="60"></img></Navbar.Brand>
+          <NavLink to="/"><img src='https://nossahotel.com/wp-content/uploads/2022/12/NOSSA-logo-wh-29.png' width="100" height="60"></img></NavLink>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink to="/user" className={'nav-link'}>Inicio</NavLink>
+              <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
               <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
               <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
               <NavLink to="/" className={'nav-link'}>Habitaciones</NavLink>
