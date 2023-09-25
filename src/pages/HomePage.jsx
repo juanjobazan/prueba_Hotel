@@ -2,6 +2,7 @@ import '../css/HomePage.css'
 import React from 'react'
 import CardsC from '../components/CardsC'
 import { Container, Row } from 'react-bootstrap'
+import ImagesC from '../components/ImagesC'
 
 const HomePage = () => {
   return (
@@ -21,7 +22,7 @@ const HomePage = () => {
             El hotel se encuentra en el tradicional circuito del Cerro el Palao, cerca de los artesanos, fabricas de quesos.</p>
             <hr />
           <h4>Fotos del Nossa </h4>
-          <CardsC />
+          <ImagesC />
           <hr />
           <h4>Habitaciones</h4>
           <CardsC />
