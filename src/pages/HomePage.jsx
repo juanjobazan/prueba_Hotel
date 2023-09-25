@@ -3,6 +3,7 @@ import React from 'react'
 import CardsC from '../components/CardsC'
 import { Container, Row } from 'react-bootstrap'
 import ImagesC from '../components/ImagesC'
+import ServC from '../components/ServC'
 
 const HomePage = () => {
   return (
@@ -27,7 +28,7 @@ const HomePage = () => {
           <h4>Habitaciones</h4>
           <CardsC />
           <h4>Servicios</h4>
-          <CardsC />
+          <ServC/>
         </Row>
       </Container>
     </>
