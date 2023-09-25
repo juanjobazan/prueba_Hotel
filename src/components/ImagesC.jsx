@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 
-const images = () => {
+const ImagesC = () => {
   return (
   <>
 <Container>
@@ -26,4 +26,4 @@ const images = () => {
   )
 }
 
-export default images
+export default ImagesC
