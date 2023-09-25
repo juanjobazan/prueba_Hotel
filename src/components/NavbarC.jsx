@@ -21,7 +21,6 @@ const NavbarC = () => {
               <NavLink to="/" className={'nav-link'}>Servicios</NavLink>
             </Nav>
 
-
             <Nav className="ms-auto">
               <NavLink to="/login" className={'nav-link'}>Iniciar Sesion</NavLink>
               <NavLink to="/register" className={'nav-link'}>Registrarse</NavLink>
