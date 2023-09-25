@@ -1,11 +1,17 @@
+
 import React from 'react'
+import CardsC from '../components/CardsC'
+import { Container, Row } from 'react-bootstrap'
 
 const HomePage = () => {
   return (
-    <div>
-      HomePage
-      
-    </div>
+    <>
+    <Container>
+      <Row>
+        <CardsC/>
+      </Row>
+    </Container>
+    </>
   )
 }
 
