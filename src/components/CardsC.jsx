@@ -12,7 +12,7 @@ const CardsC = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Link to='' className='btn btn-outline-warning'>Ver Mas </Link>
+        <Link to='/product' className='btn btn-outline-warning'>Ver Mas </Link>
       </Card.Body>
     </Card>
     
@@ -24,7 +24,7 @@ const CardsC = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Link to='' className='btn btn-outline-warning'>Ver Mas </Link>
+        <Link to='/product' className='btn btn-outline-warning'>Ver Mas </Link>
       </Card.Body>
     </Card>
     
@@ -36,7 +36,7 @@ const CardsC = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Link to='' className='btn btn-outline-warning'>Ver Mas </Link>
+        <Link to='/product' className='btn btn-outline-warning'>Ver Mas </Link>
       </Card.Body>
     </Card></>
 
