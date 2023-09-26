@@ -17,8 +17,8 @@ const NavbarC = () => {
               <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
               <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
               <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
-              <NavLink to="/" className={'nav-link'}>Habitaciones</NavLink>
-              <NavLink to="/" className={'nav-link'}>Servicios</NavLink>
+              <NavLink to="/product" className={'nav-link'}>Habitaciones</NavLink>
+              <NavLink to="/service" className={'nav-link'}>Servicios</NavLink>
             </Nav>
 
 

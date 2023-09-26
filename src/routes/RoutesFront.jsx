@@ -10,6 +10,7 @@ import AdminPage from '../pages/AdminPage'
 import ErrorPage from '../pages/ErrorPage'
 import FooterC from '../components/FooterC'
 import ProductPage from '../pages/ProductPage'
+import ServicePage from '../pages/ServicePage'
 
 const RoutesFront = () => {
   return (
@@ -20,6 +21,7 @@ const RoutesFront = () => {
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/contact' element={<ContactPage/>}/>
       <Route path='/product' element={<ProductPage/>}/>
+      <Route path='/service' element={<ServicePage/>}/>
       <Route path='/register' element={<RegisterPage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/user' element={<UserPage/>}/>
