@@ -12,7 +12,7 @@ const ServC = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Link to='' variant="primary">Ver Mas</Link >
+        <Link to='/service' variant="primary">Ver Mas</Link >
       </Card.Body>
     </Card>
     <Card style={{ width: '18rem' }}>
@@ -23,7 +23,7 @@ const ServC = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Link to='' variant="primary">Ver Mas</Link >
+        <Link to='/service' variant="primary">Ver Mas</Link >
       </Card.Body>
     </Card>
     <Card style={{ width: '18rem' }}>
@@ -34,7 +34,7 @@ const ServC = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Link to='' variant="primary">Ver Mas</Link >
+        <Link to='/service' variant="primary">Ver Mas</Link >
       </Card.Body>
     </Card>
   </>
