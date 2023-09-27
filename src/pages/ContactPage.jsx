@@ -38,7 +38,7 @@ const ContactPage = () => {
 
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Telefono</Form.Label>
-                    <Form.Control type="number" name='fono' value={values.fono} className={errors.fono && touched.fono && errors.fono && 'is-invalid'} onChange={handleChange} maxLength={5}/>
+                    <Form.Control type="number" name='fono' value={values.fono} className={errors.fono && touched.fono && errors.fono && 'is-invalid'} onChange={handleChange} minLength={10}/>
                     <small className='text-danger'>{errors.fono && touched.fono && errors.fono}</small>
                   </Form.Group>
 
