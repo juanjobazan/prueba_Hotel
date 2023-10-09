@@ -4,8 +4,32 @@ import Form from 'react-bootstrap/Form';
 import '../css/Cards.css'
 import { Formik } from 'formik'
 import userSchemaReserva from '../helpers/validationSchemaReserva';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const ProductPage = () => {
+  console.log('si')
+  const params = useParams()
+  const navigate = useNavigate()
+  const [habi,setHabis]=useState({})
+  const getOneHabitacion = async()=>{
+    console.log('si')
+    const res = await axios.get(`http://localhost:3000/api/habitacion/${params.id}`)
+    setHabis(res.data.getHabitacion)
+  }
+/*   const handleSubmit = () =>{
+    const token = JSON.parse(localStorage.getItem('token')) || ''
+    if(!token){
+      navigate('/login')
+    }else{
+      navigate('/cart')
+    }
+  } */
+  useEffect(()=>{
+    getOneHabitacion()
+  },[])
   return (
     <>
       <Formik
@@ -23,18 +47,18 @@ const ProductPage = () => {
             <h1 className='text-center mt-5'>Detalle de Habitacion (nombre)</h1>
             <hr />
 
-            <Card className='detalle-habitacion '>
-              <Card.Img variant="top" src="holder.js/100px180" />
+            <Card key={habi.id} className='detalle-habitacion '>
+              <Card.Img variant="top" src={habi.imagen}/>
               <Card.Body>
-                <Card.Title>Nombre Habitacion</Card.Title>
+                <Card.Title>{habi.numero} - {habi.nombre}</Card.Title>
                 <Card.Text>
-                  Imagen
+                    {habi.descripcion}
                 </Card.Text>
                 <Card.Text>
-                  Detalle de Hanitacion
+                  {habi.capacidad}
                 </Card.Text>
                 <Card.Text>
-                  Precio
+                  {habi.precio}
                 </Card.Text>
 
               </Card.Body>

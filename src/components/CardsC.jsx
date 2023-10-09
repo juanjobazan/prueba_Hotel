@@ -1,49 +1,34 @@
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-const CardsC = () => {
+const CardsC = ({ arrayHabi }) => {
+
   return (
-    <>
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Link to='/product' className='btn btn-outline-warning'>Ver Mas </Link>
-      </Card.Body>
-    </Card>
-    
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Link to='/product' className='btn btn-outline-warning'>Ver Mas </Link>
-      </Card.Body>
-    </Card>
-    
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Link to='/product' className='btn btn-outline-warning'>Ver Mas </Link>
-      </Card.Body>
-    </Card></>
+    <>{
+      arrayHabi.map((habi) =>
+        <Card style={{ width: '18rem' }} key={habi.id}>
+          <Card.Img variant="top" src={habi.imagen} className='h-50' />
+          <Card.Body>
+            <Card.Title>{habi.nombre}</Card.Title>
+            <Card.Text>
+              $ {habi.precio}
+            </Card.Text>
+            <Card.Text>
+              {habi.descripcion}
+            </Card.Text>
+            <Link to={`/habitacion/${habi._id}`} className='btn btn-outline-warning'>Ver Mas </Link>
+          </Card.Body>
+        </Card>)
+
+    }
 
 
-    
+    </>
 
-    
+
+
+
+
   )
 }
 

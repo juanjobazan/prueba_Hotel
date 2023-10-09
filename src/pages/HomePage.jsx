@@ -1,11 +1,30 @@
 import '../css/HomePage.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CardsC from '../components/CardsC'
 import { Container, Row } from 'react-bootstrap'
 import ImagesC from '../components/ImagesC'
 import ServC from '../components/ServC'
+import axios from 'axios'
+import { useState } from 'react'
 
 const HomePage = () => {
+  const [habi,setHabis]=useState([])
+  const [servi,setServis]=useState([])
+  
+  const getstoreApi =async()=>{
+    const res = await axios.get('http://localhost:3000/api/habitacion')
+    setHabis(res.data)
+  }
+  const getServicio=async()=>{
+    const res = await axios.get('http://localhost:3000/api/servicio')
+    setServis(res.data)
+  }
+  useEffect(()=>{
+    getstoreApi()
+  },[])
+  useEffect(()=>{
+    getServicio()
+  },[])
   return (
     <>
       <Container className='main'>
@@ -23,12 +42,13 @@ const HomePage = () => {
             El hotel se encuentra en el tradicional circuito del Cerro el Palao, cerca de los artesanos, fabricas de quesos.</p>
             <hr />
           <h4>Fotos del Nossa </h4>
-          <ImagesC />
+          <ImagesC arrayHabi={habi} />
           <hr />
           <h4>Habitaciones</h4>
-          <CardsC />
+          <CardsC arrayHabi={habi} />
           <h4>Servicios</h4>
-          <ServC/>
+          <ServC arraySer={servi}/>
+          <hr />
         </Row>
       </Container>
     </>
