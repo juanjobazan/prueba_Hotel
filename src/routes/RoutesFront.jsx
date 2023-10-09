@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import NavbarC from '../components/NavbarC'
 import HomePage from '../pages/HomePage'
 import AboutPage from '../pages/AboutPage'
@@ -12,26 +12,39 @@ import FooterC from '../components/FooterC'
 import ProductPage from '../pages/ProductPage'
 import ServicePage from '../pages/ServicePage'
 import DetalleCompra from '../pages/DetalleCompra'
+import PrivateRoute from '../components/PrivateRoute'
 
 const RoutesFront = () => {
   return (
-   <>
-    <NavbarC />
-    <Routes>
-      <Route path='/' element={<HomePage/>}/>
-      <Route path='/about' element={<AboutPage/>}/>
-      <Route path='/contact' element={<ContactPage/>}/>
-      <Route path='/product' element={<ProductPage/>}/>
-      <Route path='/service' element={<ServicePage/>}/>
-      <Route path='/compra' element={<DetalleCompra/>}/>
-      <Route path='/register' element={<RegisterPage/>}/>
-      <Route path='/login' element={<LoginPage/>}/>
-      <Route path='/user' element={<UserPage/>}/>
-      <Route path='/admin' element={<AdminPage/>}/>
-      <Route path='/*' element={<ErrorPage/>}/>
-    </Routes>
-    <FooterC />
-   </>
+    <>
+      <NavbarC />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/contact' element={<ContactPage />} />
+        <Route path='/habitacion' element={<ProductPage />} />
+        <Route path='/servicio' element={<ServicePage />} />
+        <Route path='/compra' element={
+          <PrivateRoute role='user'>
+            <DetalleCompra />
+          </PrivateRoute>
+        } />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/user' element={
+          <PrivateRoute role='user'>
+            <UserPage />
+          </PrivateRoute>
+        } />
+        <Route path='/admin' element={
+          <PrivateRoute role='admin'>
+            <AdminPage />
+          </PrivateRoute>
+        } />
+        <Route path='/*' element={<ErrorPage />} />
+      </Routes>
+      <FooterC />
+    </>
   )
 }
 

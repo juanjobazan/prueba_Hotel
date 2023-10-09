@@ -7,18 +7,35 @@ import '../css/RegisterPage.css'
 import Swal from 'sweetalert2';
 
 const RegisterPage = () => {
-
   const sendFormRegister = async (values)=>{
     const {password,rpassword}= values
     if(password=== rpassword){
-      const res = await axios.post('url',vales)
-      console.log(res)
+      const res = await axios.post('http://localhost:3000/api/user',values)
+      if (res.status === 201) {
+        Swal.fire(
+          'Bienvenido',
+          res.data.msg,
+          'success'
+        )
+      navigate('/login')
+      }
+      else
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No Coinciden las Contraseñas!',
+          
+          
+        })
+    }
     
     }else{
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'No Coinciden las Contraseñas!',
+        
         
       })
     }
