@@ -22,8 +22,8 @@ const RoutesFront = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/contact' element={<ContactPage />} />
-        <Route path='/habitacion' element={<ProductPage />} />
-        <Route path='/servicio' element={<ServicePage />} />
+        <Route path='/habitacion/:id' element={<ProductPage />} />
+        <Route path='/servicio/:id' element={<ServicePage />} />
         <Route path='/compra' element={
           <PrivateRoute role='user'>
             <DetalleCompra />

@@ -8,6 +8,8 @@ import '../css/Navbar.css'
 const NavbarC = () => {
   const navigate = useNavigate()
   const token = JSON.parse(localStorage.getItem('token')) || ''
+  const role = JSON.parse(localStorage.getItem('role'))
+
   const handleClick = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('role')
@@ -22,7 +24,7 @@ const NavbarC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {
-              token
+              token && role ==='user'
                 ?
                 <Nav className="me-auto">
                   <NavLink to={token ? "/user" : "/"} className={'nav-link'}>Inicio</NavLink>
@@ -31,13 +33,23 @@ const NavbarC = () => {
                   <NavLink to="/compra" className={'nav-link'}>Mis Reservas</NavLink>
                 </Nav>
                 :
+                token && role ==='admin'
+                ?
                 <Nav className="me-auto">
-                  <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
-                  <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
-                  <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
-                  <NavLink to="/habitacion" className={'nav-link'}>Habitaciones</NavLink>
+                  <NavLink to="/admin" className={'nav-link'}>Inicio</NavLink>
+                  <NavLink to="/about" className={'nav-link'}>Nueva Abitacion</NavLink>
+                  <NavLink to="/contact" className={'nav-link'}>Nuevo Servicio</NavLink>
+            
 
                 </Nav>
+                :
+                <Nav className="me-auto">
+                <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
+                <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
+                <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
+                <NavLink to="/habitacion" className={'nav-link'}>Habitaciones</NavLink>
+
+              </Nav>
 
             }
 

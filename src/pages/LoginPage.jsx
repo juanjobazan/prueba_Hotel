@@ -5,30 +5,39 @@ import { Formik } from 'formik'
 import userSchemaLogin from '../helpers/validationSchemaYupLogin';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const sendForm = async (values) => {
-    const res = await axios.post('http://localhost:3000/api/user/login', values)
-    if (res.data?.token) {
+    try {
+      const res = await axios.post('http://localhost:3000/api/user/login', values)
     
-       localStorage.setItem('token', JSON.stringify(res.data.token))
-      localStorage.setItem('role', JSON.stringify(res.data.role))
-        if(res.data.role === 'admin'){
+      console.log(res.data)
+      if (res.data?.token) {
+        console.log(res)
+        localStorage.setItem('token', JSON.stringify(res.data.token))
+        localStorage.setItem('role', JSON.stringify(res.data.role))
+        localStorage.setItem('id',JSON.stringify(res.data.id))
+        if (res.data.role === 'admin') {
           navigate('/admin')
-        }else{
+        } else {
           navigate('/user')
-        } 
-        
-    } else {
-      
+        }
+      }
+    } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Usuario y/o contraseña incorrecta',
 
       })
+
     }
+
+
+
+
 
 
   }
