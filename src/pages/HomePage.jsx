@@ -12,11 +12,12 @@ const HomePage = () => {
   const [servi,setServis]=useState([])
   
   const getstoreApi =async()=>{
+    
     const res = await axios.get('http://localhost:3000/api/habitacion')
     setHabis(res.data)
   }
   const getServicio=async()=>{
-    const res = await axios.get('http://localhost:3000/api/servicio')
+    const res = await  axios.get('http://localhost:3000/api/servicio')
     setServis(res.data)
   }
   useEffect(()=>{

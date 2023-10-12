@@ -5,42 +5,53 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import '../css/RegisterPage.css'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
-  const sendFormRegister = async (values)=>{
-    const {password,rpassword}= values
-    if(password=== rpassword){
-      const res = await axios.post('http://localhost:3000/api/user',values)
-      if (res.status === 201) {
-        Swal.fire(
+  const sendFormRegister = async (values) => {
+    const navigate = useNavigate
+    const { password, rpassword } = values
+
+    if (password === rpassword) {
+
+      try {
+        const res = await axios.post('http://localhost:3000/api/user', values)
+
+
+        return Swal.fire(
           'Bienvenido',
-          res.data.msg,
-          'success'
+          'usuario creado con exito',
+          'success',
+          navigate('/login')
         )
-      navigate('/login')
-      }
-      else
-      {
+        
+
+
+      } catch (error) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'No Coinciden las Contraseñas!',
-          
-          
+          text: 'Usuario YA Existe!',
+
+
         })
+
+      }
     }
-    
-    }else{
+    else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'No Coinciden las Contraseñas!',
-        
-        
+
+
       })
     }
-    
+
   }
+
+
+
 
 
   return (
@@ -82,22 +93,22 @@ const RegisterPage = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
-              <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
-              <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-            </svg>
-            Contraseña</Form.Label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                  <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+                Contraseña</Form.Label>
               <Form.Control type="password" name="password" value={values.password} className={errors.password && touched.password && errors.password && 'is-invalid'} onChange={handleChange} />
               <small className='text-danger'>{errors.password && touched.password && errors.password}</small>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
-              <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
-              <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-            </svg>
-            Repetir Contraseña</Form.Label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                  <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+                Repetir Contraseña</Form.Label>
               <Form.Control type="password" name="rpassword" value={values.rpassword} className={errors.rpassword && touched.rpassword && errors.rpassword && 'is-invalid'} onChange={handleChange} />
               <small className='text-danger'>{errors.rpassword && touched.rpassword && errors.rpassword}</small>
             </Form.Group>
