@@ -13,7 +13,8 @@ const NavbarC = () => {
   const handleClick = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('role')
-    navigate('/')
+    localStorage.removeItem('id')
+     navigate('/')
   }
   
   return (
@@ -37,8 +38,12 @@ const NavbarC = () => {
                 ?
                 <Nav className="me-auto">
                   <NavLink to="/admin" className={'nav-link'}>Inicio</NavLink>
-                  <NavLink to="/about" className={'nav-link'}>Nueva Abitacion</NavLink>
-                  <NavLink to="/contact" className={'nav-link'}>Nuevo Servicio</NavLink>
+                  <NavLink to="/adminHabi" className={'nav-link'}>Habitaciones</NavLink>
+                  <NavLink to="/adminHabiCreate" className={'nav-link'}>+ Habitaciones</NavLink>
+                  <NavLink to="/adminServi" className={'nav-link'}>Servicios</NavLink>
+                  <NavLink to="/adminServiCreate" className={'nav-link'}>+ Servicios</NavLink>
+                  <NavLink to="/adminUser" className={'nav-link'}>Usuarios</NavLink>
+                  <NavLink to="/imageHabiAdmin" className={'nav-link'}>Imagenes</NavLink>
             
 
                 </Nav>
@@ -48,6 +53,7 @@ const NavbarC = () => {
                 <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
                 <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
                 <NavLink to="/habitacion" className={'nav-link'}>Habitaciones</NavLink>
+                
 
               </Nav>
 

@@ -13,7 +13,6 @@ const LoginPage = () => {
     try {
       const res = await axios.post('http://localhost:3000/api/user/login', values)
     
-      console.log(res.data)
       if (res.data?.token) {
         console.log(res)
         localStorage.setItem('token', JSON.stringify(res.data.token))

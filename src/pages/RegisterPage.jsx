@@ -5,7 +5,8 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import '../css/RegisterPage.css'
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
+import { Alert } from 'react-bootstrap';
 
 const RegisterPage = () => {
   const sendFormRegister = async (values) => {
@@ -16,15 +17,13 @@ const RegisterPage = () => {
 
       try {
         const res = await axios.post('http://localhost:3000/api/user', values)
-
-
-        return Swal.fire(
-          'Bienvenido',
-          'usuario creado con exito',
-          'success',
-          navigate('/login')
-        )
         
+       return Swal.fire(
+        'Bienvenido',
+        'Usuario Creado con Exito',
+        'success'
+      )
+       
 
 
       } catch (error) {

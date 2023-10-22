@@ -4,24 +4,54 @@ import '../css/Serv.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const ServicePage = () => {
   const params = useParams()
   const navigate = useNavigate()
   const [servi, setServis] = useState([])
+  const token = localStorage.getItem('token')
+
 
   useEffect(() => {
     const getOneServicio = async () => {
+      if (!token) return navigate('/login')
       const res = await axios.get(`http://localhost:3000/api/servicio/${params.id}`)
       setServis(res.data)
     }
     getOneServicio()
   }, [])
 
-  useEffect(()=>{
+  const handleClick = async (id) => {
+    try {
+      const idUser = JSON.parse(localStorage.getItem('id'))
+      const resUser = await axios.get(`http://localhost:3000/api/user/${idUser}`)
 
-  },[servi])
+      const resCartServi = await axios.post(`http://localhost:3000/api/cartServicio/${resUser.data.idCartServicio}/${id}`)
+
+      if (resCartServi.status === 200) {
+        Swal.fire(
+          resCartServi.data.msg,
+          '',
+          'success'
+        )
+        navigate('/')
+      }
+    } catch (error) {
+      if (error.response.status === 400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oooops..',
+          text: error.response.data.msg
+        })
+      }
+    }
+  }
+
+  useEffect(() => {
+
+  }, [servi])
 
   return (
     <>
@@ -40,7 +70,7 @@ const ServicePage = () => {
               Precio: $ AR {servi.precio}
             </Card.Text>
             <hr />
-            <Button variant="primary" >Contratar Servicio</Button>
+            <Button variant="primary" onClick={() => handleClick(servi._id)} >Contratar Servicio</Button>
           </Card.Body>
         </Card>
         <hr />
