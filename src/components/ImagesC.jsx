@@ -6,7 +6,8 @@ const ImagesC = ({arrayHabi}) => {
   <>
   {
     arrayHabi.map((habi)=>
-    <Image key={habi.fluid} src={habi.imagen} fluid />
+    
+    <Image key={habi.fluid} src={habi.destacado==true ?habi.imagen : ""} fluid />
 
   
   )

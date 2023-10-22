@@ -13,6 +13,12 @@ import ProductPage from '../pages/ProductPage'
 import ServicePage from '../pages/ServicePage'
 import DetalleCompra from '../pages/DetalleCompra'
 import PrivateRoute from '../components/PrivateRoute'
+import AdminHabiPage from '../pages/AdminHabiPage'
+import CreateHabiPage from '../pages/CreateHabiPage'
+import AdminServiPage from '../pages/AdminServiPage'
+import CreateServiPage from '../pages/CreateServiPage'
+import AdminUserPage from '../pages/AdminUserPage'
+import ImageHabiPage from '../pages/ImageHabiPage'
 
 const RoutesFront = () => {
   return (
@@ -41,6 +47,39 @@ const RoutesFront = () => {
             <AdminPage />
           </PrivateRoute>
         } />
+        <Route path='/adminHabi' element={
+          <PrivateRoute role='admin'>
+            <AdminHabiPage/>
+          </PrivateRoute>
+        }
+        />
+        <Route path='adminHabiCreate' element={
+          <PrivateRoute role='admin'>
+            <CreateHabiPage />
+          </PrivateRoute>
+        }/>
+        <Route path='adminServi' element={
+          <PrivateRoute role='admin'>
+            <AdminServiPage />
+          </PrivateRoute>
+        }/>
+        <Route path='adminServiCreate' element={
+          <PrivateRoute role='admin'>
+            <CreateServiPage/>
+          </PrivateRoute>
+        } />
+        <Route path='adminUser' element={
+          <PrivateRoute role='admin'>
+            <AdminUserPage/>
+          </PrivateRoute>
+        }/>
+        <Route path='imageHabiAdmin' element={
+          <PrivateRoute role='admin'>
+            <ImageHabiPage/>
+          </PrivateRoute>
+        }/>
+          
+        
         <Route path='/*' element={<ErrorPage />} />
       </Routes>
       <FooterC />

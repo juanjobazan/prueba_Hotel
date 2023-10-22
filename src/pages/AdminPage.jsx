@@ -1,7 +1,92 @@
+import Swal from 'sweetalert2';
 import '../css/User.css'
 import Table from 'react-bootstrap/Table';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import ModalC from '../components/ModalC';
+import { Button } from 'react-bootstrap';
+
 
 const AdminPage = () => {
+
+  const [allHabi, setAllHabi] = useState([])
+  const [allServi, setAllServi] = useState([])
+  const [allUser, setAllUser] = useState([])
+  const [refreshState, resRefreshState] = useState(false)
+
+  const getAllHabi = async () => {
+    const res = await axios.get('http://localhost:3000/api/habitacion')
+    setAllHabi(res.data)
+  }
+  const getAllUsu = async () => {
+    const res = await axios.get('http://localhost:3000/api/user')
+    setAllUser(res.data)
+  }
+  const getAllservi =async()=>{
+    const res = await axios.get('http://localhost:3000/api/servicio')
+    setAllServi(res.data)
+  
+  }
+
+  const handleClick = async (id) => {
+  
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Estas Seguro?',
+      text: "No podras Revertir Esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'SI, Eliminar!',
+      cancelButtonText: 'No, Cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+       axios.delete(`http://localhost:3000/api/habitacion/${id}`)
+        .then(res=>{
+          if(res.status === 200 ){
+            swalWithBootstrapButtons.fire(
+              'Eliminado!',
+              res.data.msg,
+              'success' 
+            )
+            }
+        })
+       
+       
+
+        resRefreshState(true)
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'Esta Informacion NO se Elimino :)',
+          'error'
+        )
+      }
+    })
+
+
+  
+
+  }
+
+  useEffect(() => {
+    getAllHabi()
+    getAllUsu()
+    getAllservi()
+    resRefreshState(false)
+
+  }, [refreshState])
+
   return (
     <>
       <div className="container main">
@@ -10,28 +95,25 @@ const AdminPage = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Usuario</th>
                 <th>Correo</th>
                 <th>Roll</th>
-                <th>Acciones</th>
+              
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-              </tr>
+              {
+                allUser.map((usu) =>
+                  <tr key={usu._id}>
+                    <td>{usu._id}</td>
+                    <td>{usu.user}</td>
+                    <td>{usu.email}</td>
+                    <td>{usu.role}</td>
+                    
+                  </tr>
+                )
+              }
 
 
             </tbody>
@@ -43,29 +125,28 @@ const AdminPage = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>#</th>
+                <th>Numero</th>
                 <th>Nombre</th>
-                <th>Detalle</th>
+                <th>Descripcion - Capacidad</th>
                 <th>Precio</th>
-                <th>Acciones</th>
+               
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-              </tr>
-            
+              {
+                allHabi.map((habi) =>
+                  <tr key={habi._id}>
+                    <td>{habi.numero}</td>
+                    <td>{habi.nombre}</td>
+                    <td>{habi.descripcion} - {habi.capacidad}</td>
+                    <td>{habi.precio}</td>
+                    
+                  </tr>
+                )
+              }
+
+
+
             </tbody>
           </Table>
         </div>
@@ -75,29 +156,28 @@ const AdminPage = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>#</th>
+                <th>Codigo</th>
                 <th>Nombre</th>
-                <th>Detalle</th>
+                <th>Descripcion</th>
                 <th>Precio</th>
-                <th>Acciones</th>
+                
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+              {
+                allServi.map((servi)=>
+                <tr key={servi._id}>
+                <td>{servi.codigo}</td>
+                <td>{servi.nombre}</td>
+                <td>{servi.descripcion}</td>
+                <td>{servi.precio}</td>
+               
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-              </tr>
-            
+              )
+              }
+              
+              
+
             </tbody>
           </Table>
         </div>

@@ -7,40 +7,44 @@ import userSchemaReserva from '../helpers/validationSchemaReserva';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 const ProductPage = () => {
   const params = useParams()
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
-  const idRes = localStorage.getItem('id')
   const [habi, setHabis] = useState([])
 
   const sendForm = async (values) => {
     if (!token) return navigate('/login')
 
     try {
-   
-      const res = await axios.post(`http://localhost:3000/api/reserva/${idRes}/${params.id}`, values)
-      
-      if (res.status === 201) {
+      const idUser = JSON.parse(localStorage.getItem('id'))
+      const resUser = await axios.get(`http://localhost:3000/api/user/${idUser}`)
+      console.log(resUser.data.idReserva)
+      console.log(habi._id)
+      console.log(values)
+
+      const reReserva = await axios.post(`http://localhost:3000/api/reserva/${resUser.data.idReserva}/${habi._id}`, values)
+
+      if (reReserva.status === 200) {
         Swal.fire(
-          'Reservado',
-          res.data.msg,
+          reReserva.data.msg,
+          '',
           'success'
         )
-        navigate('/login')
+        navigate('/')
       }
-      Swal.fire(
-        'error',
-        'Oops...',
-        res.data.msg
-
-      )
-
 
     } catch (error) {
-
+      if (error.response.status === 400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oooops..',
+          text: error.response.data.msg
+        })
+      }
     }
   }
   useEffect(() => {
