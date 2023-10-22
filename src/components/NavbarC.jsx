@@ -52,7 +52,7 @@ const NavbarC = () => {
                 <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
                 <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
                 <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
-                <NavLink to="/habitacion" className={'nav-link'}>Habitaciones</NavLink>
+                
                 
 
               </Nav>
