@@ -3,32 +3,17 @@ import '../css/User.css'
 import Table from 'react-bootstrap/Table';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ModalC from '../components/ModalC';
+import ModalCU from '../components/ModalCU';
 import { Button } from 'react-bootstrap';
 import clienteAxios, { config } from '../../utils/axiosCliente';
 
-
-const AdminPage = () => {
-
-  const [allHabi, setAllHabi] = useState([])
-  const [allServi, setAllServi] = useState([])
-  const [allUser, setAllUser] = useState([])
+const AdminUserPage = () => {
+    const [allUser, setAllUser] = useState([])
   const [refreshState, resRefreshState] = useState(false)
-
-  const getAllHabi = async () => {
-    const res = await clienteAxios.get('/habitacion',config)
-    setAllHabi(res.data)
-  }
   const getAllUsu = async () => {
     const res = await clienteAxios.get('/user',config)
     setAllUser(res.data)
   }
-  const getAllservi =async()=>{
-    const res = await clienteAxios.get('/servicio',config)
-    setAllServi(res.data)
-  
-  }
-
   const handleClick = async (id) => {
   
     const swalWithBootstrapButtons = Swal.mixin({
@@ -49,7 +34,7 @@ const AdminPage = () => {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-       axios.delete(`http://localhost:3000/api/habitacion/${id}`)
+       clienteAxios.delete(`/user/${id}`,config)
         .then(res=>{
           if(res.status === 200 ){
             swalWithBootstrapButtons.fire(
@@ -79,18 +64,17 @@ const AdminPage = () => {
   
 
   }
-
   useEffect(() => {
-    getAllHabi()
+    
     getAllUsu()
-    getAllservi()
+  
     resRefreshState(false)
 
   }, [refreshState])
 
   return (
-    <>
-      <div className="container main">
+   <>
+   <div className="container main">
         <div>
           <h1>ABM Usuarios</h1>
           <Table striped bordered hover>
@@ -100,7 +84,7 @@ const AdminPage = () => {
                 <th>Usuario</th>
                 <th>Correo</th>
                 <th>Roll</th>
-              
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -111,81 +95,21 @@ const AdminPage = () => {
                     <td>{usu.user}</td>
                     <td>{usu.email}</td>
                     <td>{usu.role}</td>
-                    
+                    <td>
+                      <ModalCU idUsu={usu._id} getAllUsu={getAllUsu} />
+                      <Button variant='danger' onClick={() => { handleClick(usu._id) }}>Eliminar</Button>
+                    </td>
                   </tr>
                 )
               }
 
 
             </tbody>
-          </Table>
-        </div>
-        <hr />
-        <div>
-          <h1>ABM Habitaciones</h1>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Numero</th>
-                <th>Nombre</th>
-                <th>Descripcion - Capacidad</th>
-                <th>Precio</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-              {
-                allHabi.map((habi) =>
-                  <tr key={habi._id}>
-                    <td>{habi.numero}</td>
-                    <td>{habi.nombre}</td>
-                    <td>{habi.descripcion} - {habi.capacidad}</td>
-                    <td>{habi.precio}</td>
-                    
-                  </tr>
-                )
-              }
-
-
-
-            </tbody>
-          </Table>
-        </div>
-        <hr />
-        <div>
-          <h1>ABM Servicios</h1>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              {
-                allServi.map((servi)=>
-                <tr key={servi._id}>
-                <td>{servi.codigo}</td>
-                <td>{servi.nombre}</td>
-                <td>{servi.descripcion}</td>
-                <td>{servi.precio}</td>
-               
-              </tr>
-              )
-              }
-              
-              
-
-            </tbody>
-          </Table>
-        </div>
-        <hr />
-      </div>
-    </>
+            </Table>
+            </div>
+            </div>
+   </>
   )
 }
 
-export default AdminPage
+export default AdminUserPage
