@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 
 const ProductPage = () => {
@@ -21,12 +22,12 @@ const ProductPage = () => {
 
     try {
       const idUser = JSON.parse(localStorage.getItem('id'))
-      const resUser = await axios.get(`http://localhost:3000/api/user/${idUser}`)
+      const resUser = await clienteAxios.get(`/user/${idUser}`,config)
       console.log(resUser.data.idReserva)
       console.log(habi._id)
       console.log(values)
 
-      const reReserva = await axios.post(`http://localhost:3000/api/reserva/${resUser.data.idReserva}/${habi._id}`, values)
+      const reReserva = await clienteAxios.post(`/reserva/${resUser.data.idReserva}/${habi._id}`, values,config)
 
       if (reReserva.status === 200) {
         Swal.fire(
@@ -50,7 +51,7 @@ const ProductPage = () => {
   useEffect(() => {
 
     const getOneHabitacion = async () => {
-      const res = await axios.get(`http://localhost:3000/api/habitacion/${params.id}`)
+      const res = await clienteAxios.get(`/habitacion/${params.id}`,config)
       setHabis(res.data)
 
     }

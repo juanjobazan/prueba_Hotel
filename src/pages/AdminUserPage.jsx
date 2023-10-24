@@ -5,12 +5,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ModalCU from '../components/ModalCU';
 import { Button } from 'react-bootstrap';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const AdminUserPage = () => {
     const [allUser, setAllUser] = useState([])
   const [refreshState, resRefreshState] = useState(false)
   const getAllUsu = async () => {
-    const res = await axios.get('http://localhost:3000/api/user')
+    const res = await clienteAxios.get('/user',config)
     setAllUser(res.data)
   }
   const handleClick = async (id) => {
@@ -33,7 +34,7 @@ const AdminUserPage = () => {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-       axios.delete(`http://localhost:3000/api/user/${id}`)
+       clienteAxios.delete(`/user/${id}`,config)
         .then(res=>{
           if(res.status === 200 ){
             swalWithBootstrapButtons.fire(

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ModalC from '../components/ModalC';
 import { Button } from 'react-bootstrap';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 
 const AdminPage = () => {
@@ -15,15 +16,15 @@ const AdminPage = () => {
   const [refreshState, resRefreshState] = useState(false)
 
   const getAllHabi = async () => {
-    const res = await axios.get('http://localhost:3000/api/habitacion')
+    const res = await clienteAxios.get('/habitacion',config)
     setAllHabi(res.data)
   }
   const getAllUsu = async () => {
-    const res = await axios.get('http://localhost:3000/api/user')
+    const res = await clienteAxios.get('/user',config)
     setAllUser(res.data)
   }
   const getAllservi =async()=>{
-    const res = await axios.get('http://localhost:3000/api/servicio')
+    const res = await clienteAxios.get('/servicio',config)
     setAllServi(res.data)
   
   }

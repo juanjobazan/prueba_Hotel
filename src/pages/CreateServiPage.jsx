@@ -6,13 +6,14 @@ import '../css/RegisterPage.css'
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import serviSchema from '../helpers/validationSchemaYupServi';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const CreateServiPage = () => {
     const navigate = useNavigate()
     const sendFormRegister = async (values) => {
         try {
            
-            const res = await axios.post('http://localhost:3000/api/servicio', values)
+            const res = await clienteAxios.post('/servicio', values,config)
            
             if (res.status === 200) {
                 Swal.fire(

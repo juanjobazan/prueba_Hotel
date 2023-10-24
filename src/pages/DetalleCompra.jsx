@@ -3,6 +3,7 @@ import '../css/DetalleCompra.css'
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const DetalleCompra = () => {
 
@@ -14,16 +15,16 @@ const DetalleCompra = () => {
 
     const getAllServi = async () => {
         const idUser = JSON.parse(localStorage.getItem('id'))
-        const resUser = await axios.get(`http://localhost:3000/api/user/${idUser}`)
-        const resCartServi = await axios.get(`http://localhost:3000/api/cartServicio/${resUser.data.idCartServicio}`)
+        const resUser = await clienteAxios.get(`/user/${idUser}`,config)
+        const resCartServi = await clienteAxios.get(`/cartServicio/${resUser.data.idCartServicio}`,config)
         setAllServi(resCartServi.data.cartServicio.servicios)
        
     }
 
     const getAllRes =async()=>{
         const idUser = JSON.parse(localStorage.getItem('id'))
-        const resUser = await axios.get(`http://localhost:3000/api/user/${idUser}`)
-        const resReserva = await axios.get(`http://localhost:3000/api/reserva/${resUser.data.idReserva}`)
+        const resUser = await clienteAxios.get(`/user/${idUser}`,config)
+        const resReserva = await clienteAxios.get(`/reserva/${resUser.data.idReserva}`,config)
         setAllRes(resReserva.data.reserva.habitaciones)
     }
     useEffect(() => {

@@ -6,12 +6,13 @@ import userSchemaLogin from '../helpers/validationSchemaYupLogin';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const sendForm = async (values) => {
     try {
-      const res = await axios.post('http://localhost:3000/api/user/login', values)
+      const res = await clienteAxios.post('/user/login', values,config)
     
       if (res.data?.token) {
         console.log(res)

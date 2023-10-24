@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ModalC from '../components/ModalC';
 import { Button } from 'react-bootstrap';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const AdminHabiPage = () => {
     const [allHabi, setAllHabi] = useState([])
     const [refreshState, resRefreshState] = useState(false)
 
     const getAllHabi = async () => {
-        const res = await axios.get('http://localhost:3000/api/habitacion')
+        const res = await clienteAxios.get('http://localhost:3000/api/habitacion',config)
         setAllHabi(res.data)
       }
       const handleClick = async (id) => {
@@ -34,7 +35,7 @@ const AdminHabiPage = () => {
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-           axios.delete(`http://localhost:3000/api/habitacion/${id}`)
+           clienteAxios.delete(`/habitacion/${id}`,config)
             .then(res=>{
               if(res.status === 200 ){
                 swalWithBootstrapButtons.fire(

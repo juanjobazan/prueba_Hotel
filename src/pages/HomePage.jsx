@@ -6,6 +6,7 @@ import ImagesC from '../components/ImagesC'
 import ServC from '../components/ServC'
 import axios from 'axios'
 import { useState } from 'react'
+import clienteAxios, { config } from '../../utils/axiosCliente'
 
 const HomePage = () => {
   const [habi,setHabis]=useState([])
@@ -13,11 +14,11 @@ const HomePage = () => {
   
   const getstoreApi =async()=>{
     
-    const res = await axios.get('http://localhost:3000/api/habitacion')
+    const res = await clienteAxios.get('/habitacion',config)
     setHabis(res.data)
   }
   const getServicio=async()=>{
-    const res = await  axios.get('http://localhost:3000/api/servicio')
+    const res = await  clienteAxios.get('/servicio',config)
     setServis(res.data)
   }
   useEffect(()=>{
