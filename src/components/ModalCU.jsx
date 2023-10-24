@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const ModalCU = (props) => {
     const { type, idUsu, getAllUsu} = props
@@ -17,7 +18,7 @@ const ModalCU = (props) => {
     const handleShow = () => setShow(true);
 
     const handleClick = async () => {
-        const res = await axios.get(`http://localhost:3000/api/user/${idUsu}`)
+        const res = await clienteAxios.get(`/user/${idUsu}`,config)
         setUsua(res.data)
         setShow(true)
     }
@@ -30,7 +31,7 @@ const ModalCU = (props) => {
 
     const sendFromHabi = async (id) => {
 try {
-    const res = await axios.put(`http://localhost:3000/api/user/${id}`,usua)
+    const res = await clienteAxios.put(`/user/${id}`,usua,config)
 
     if (res.status === 200) {
         Swal.fire(

@@ -18,6 +18,7 @@ const RegisterPage = () => {
 
       try {
         const res = await clienteAxios.post('/user', values,config)
+        const reE = await clienteAxios.post('/message',values, confing)
         
        return Swal.fire(
         'Bienvenido',
