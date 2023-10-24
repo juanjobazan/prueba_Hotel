@@ -12,7 +12,7 @@ const AdminHabiPage = () => {
     const [refreshState, resRefreshState] = useState(false)
 
     const getAllHabi = async () => {
-        const res = await clienteAxios.get('http://localhost:3000/api/habitacion',config)
+        const res = await clienteAxios.get('/habitacion',config)
         setAllHabi(res.data)
       }
       const handleClick = async (id) => {
