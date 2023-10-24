@@ -4,6 +4,7 @@ import ServC from '../components/ServC'
 import '../css/User.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import clienteAxios, { config } from '../../utils/axiosCliente'
 
 
 const UserPage = () => {
@@ -11,11 +12,11 @@ const UserPage = () => {
   const [servi, setServis] = useState([])
 
   const getstoreApi = async () => {
-    const res = await axios.get('http://localhost:3000/api/habitacion')
+    const res = await clienteAxios.get('/habitacion',config)
     setHabis(res.data)
   }
   const getServicio = async () => {
-    const res = await axios.get('http://localhost:3000/api/servicio')
+    const res = await clienteAxios.get('/servicio',config)
     setServis(res.data)
   }
   useEffect(() => {

@@ -7,6 +7,7 @@ import '../css/RegisterPage.css'
 import Swal from 'sweetalert2';
 import { redirect, useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const RegisterPage = () => {
   const sendFormRegister = async (values) => {
@@ -16,7 +17,7 @@ const RegisterPage = () => {
     if (password === rpassword) {
 
       try {
-        const res = await axios.post('http://localhost:3000/api/user', values)
+        const res = await clienteAxios.post('/user', values,config)
         
        return Swal.fire(
         'Bienvenido',

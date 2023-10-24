@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { Navigate } from 'react-router-dom';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 const ImageHabiPage = () => {
     const [allHabi, setAllHabi] = useState([])
@@ -12,7 +13,7 @@ const ImageHabiPage = () => {
     const [path, setPaht] = useState({})
 
     const getAllHabi = async () => {
-        const res = await axios.get('http://localhost:3000/api/habitacion')
+        const res = await clienteAxios.get('/habitacion',config)
         setAllHabi(res.data)
     }
 
@@ -26,7 +27,7 @@ const ImageHabiPage = () => {
         try {
             const formData = new FormData();
             formData.append('image', path);
-            const res = await axios.post(`http://localhost:3000/api/image/${id}`, formData)
+            const res = await clienteAxios.post(`/image/${id}`, formData,config)
             
             
              return   Swal.fire(

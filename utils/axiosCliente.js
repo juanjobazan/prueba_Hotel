@@ -4,8 +4,9 @@ import axios  from "axios";
 const token = JSON.parse(localStorage.getItem('token'))
 
 const clienteAxios = axios.create({
-    baseURL: 'http://localhost:3000/api'
-    /* baseURL: 'http://vercel:8080/api' */
+
+    baseURL: `${import.meta.env.VITE_URL_BACK_DEPLOY}/api` 
+   
 
 })
 

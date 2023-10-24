@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import clienteAxios, { config } from '../../utils/axiosCliente';
 
 
 const ServicePage = () => {
@@ -17,7 +18,7 @@ const ServicePage = () => {
   useEffect(() => {
     const getOneServicio = async () => {
       if (!token) return navigate('/login')
-      const res = await axios.get(`http://localhost:3000/api/servicio/${params.id}`)
+      const res = await clienteAxios.get(`/servicio/${params.id}`,config)
       setServis(res.data)
     }
     getOneServicio()
@@ -26,9 +27,9 @@ const ServicePage = () => {
   const handleClick = async (id) => {
     try {
       const idUser = JSON.parse(localStorage.getItem('id'))
-      const resUser = await axios.get(`http://localhost:3000/api/user/${idUser}`)
+      const resUser = await clienteAxios.get(`/user/${idUser}`,config)
 
-      const resCartServi = await axios.post(`http://localhost:3000/api/cartServicio/${resUser.data.idCartServicio}/${id}`)
+      const resCartServi = await clienteAxios.post(`/cartServicio/${resUser.data.idCartServicio}/${id}`,config)
 
       if (resCartServi.status === 200) {
         Swal.fire(
