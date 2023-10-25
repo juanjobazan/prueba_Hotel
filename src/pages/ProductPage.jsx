@@ -23,9 +23,7 @@ const ProductPage = () => {
     try {
       const idUser = JSON.parse(localStorage.getItem('id'))
       const resUser = await clienteAxios.get(`/user/${idUser}`,config)
-      console.log(resUser.data.idReserva)
-      console.log(habi._id)
-      console.log(values)
+     
 
       const reReserva = await clienteAxios.post(`/reserva/${resUser.data.idReserva}/${habi._id}`, values,config)
 
