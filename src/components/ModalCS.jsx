@@ -78,24 +78,24 @@ try {
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="SerCodigoId">
                                     <Form.Label>Codigo</Form.Label>
-                                    <Form.Control type="number" name='codigo' placeholder="name@example.com" value={servi?.codigo} onChange={handleChange} />
+                                    <Form.Control type="number" name='codigo' placeholder="Ingrese el Codigo del Servicio" value={servi?.codigo} onChange={handleChange} />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="SerDescId">
                                     <Form.Label>Descripcion</Form.Label>
-                                    <Form.Control type="text" name='descripcion' placeholder="name@example.com" value={servi?.descripcion} onChange={handleChange} />
+                                    <Form.Control type="text" name='descripcion' placeholder="Ingrese la Descripcion del Servicio" value={servi?.descripcion} onChange={handleChange} />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="SerNombreId">
                                     <Form.Label>Nombre</Form.Label>
-                                    <Form.Control type="text" name='nombre' placeholder="name@example.com" value={servi?.nombre} onChange={handleChange} />
+                                    <Form.Control type="text" name='nombre' placeholder="Ingrese el Nombre del Servicio" value={servi?.nombre} onChange={handleChange} />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="SerPrecioId">
                                     <Form.Label>Precio</Form.Label>
-                                    <Form.Control type="number" name='precio' placeholder="name@example.com" value={servi?.precio} onChange={handleChange} />
+                                    <Form.Control type="number" name='precio' placeholder="Ingrese el Precio del Servicio" value={servi?.precio} onChange={handleChange} />
                                 </Form.Group>
 
                             </Form>

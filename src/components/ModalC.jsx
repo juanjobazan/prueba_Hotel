@@ -90,28 +90,28 @@ try {
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="NombreHabId">
                                     <Form.Label>Nombre</Form.Label>
-                                    <Form.Control type="text" name='nombre' placeholder="name@example.com" value={habi?.nombre} onChange={handleChange} />
+                                    <Form.Control type="text" name='nombre' placeholder="Ingrese el Nombre de la Habitacion" value={habi?.nombre} onChange={handleChange} />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="PrecioHabId">
                                     <Form.Label>Precio</Form.Label>
-                                    <Form.Control type="number" name='precio' placeholder="name@example.com" value={habi?.precio} onChange={handleChange} />
+                                    <Form.Control type="number" name='precio' placeholder="Ingrese el Precio de la Habitacion" value={habi?.precio} onChange={handleChange} />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="DescHabId">
                                     <Form.Label>Descripcion</Form.Label>
-                                    <Form.Control type="text" name='descripcion' placeholder="name@example.com" value={habi?.descripcion} onChange={handleChange} />
+                                    <Form.Control type="text" name='descripcion' placeholder="Ingrese la Descripcion de la Habitacion" value={habi?.descripcion} onChange={handleChange} />
                                 </Form.Group>
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="CapaHabId">
                                     <Form.Label>Capacidad</Form.Label>
-                                    <Form.Control type="number" name='capacidad' placeholder="name@example.com" value={habi?.capacidad} onChange={handleChange} />
+                                    <Form.Control type="number" name='capacidad' placeholder="Ingrese la Capacidad de la Habitacion" value={habi?.capacidad} onChange={handleChange} />
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="DestaHabId">
                                     <Form.Label>Destacado</Form.Label>
-                                    <Form.Control type="text" name='destacado' placeholder="name@example.com" value={habi?.destacado} onChange={handleChange} />
+                                    <Form.Control type="text" name='destacado' placeholder="Destacado True - False" value={habi?.destacado} onChange={handleChange} />
                                 </Form.Group>
 
                             </Form>
@@ -132,7 +132,7 @@ try {
                             <Form>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Nombre</Form.Label>
-                                    <Form.Control type="text" name='nombre' placeholder="name@example.com" value={habi?.nombre} onChange={handleChange} />
+                                    <Form.Control type="text" name='nombre' placeholder="Ingrese el nombre de la Habitacion" value={habi?.nombre} onChange={handleChange} />
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

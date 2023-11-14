@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import '../css/RegisterPage.css'
 import Swal from 'sweetalert2';
-import { redirect, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, redirect, useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import clienteAxios, { config } from '../../utils/axiosCliente';
 
@@ -14,42 +14,50 @@ const RegisterPage = () => {
     const navigate = useNavigate
     const { password, rpassword } = values
 
-    if (password === rpassword) {
-
-      try {
-        const res = await clienteAxios.post('/user', values,config)
-        const reE = await clienteAxios.post('/message',values, confing)
-        
-       return Swal.fire(
-        'Bienvenido',
-        'Usuario Creado con Exito',
-        'success'
-      )
-       
 
 
-      } catch (error) {
+    try {
+
+      if (password === rpassword) {
+
+        const res = await clienteAxios.post('/user', values, config)
+
+        if (res.status === 201) {
+
+          Swal.fire({
+            icon: "success",
+            title: "¡Registro exitoso!",
+            text: "Ya puedes iniciar sesión",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          
+        }
+      }
+      else {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Usuario YA Existe!',
+          text: 'No Coinciden las Contraseñas!',
 
 
         })
-
       }
-    }
-    else {
+
+
+
+    } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'No Coinciden las Contraseñas!',
+        text: 'Usuario y/o Email, YA Existe!',
 
 
       })
-    }
 
+    }
   }
+
 
 
 
@@ -71,7 +79,7 @@ const RegisterPage = () => {
         <div className="d-flex justify-content-center mt-5 formulario">
           <Form className="w-25">
             <h5 className='mb-3'>Formulario de Registro</h5>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formRegisterUserID">
               <Form.Label>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
@@ -81,7 +89,7 @@ const RegisterPage = () => {
               <small className='text-danger'> {errors.user && touched.user && errors.user}</small>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formRegisterEmailId">
               <Form.Label>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
                   <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z" />
@@ -92,7 +100,7 @@ const RegisterPage = () => {
               <small className='text-danger'>{errors.email && touched.email && errors.email}</small>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formRegisterPassId">
               <Form.Label>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
                   <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
@@ -103,7 +111,7 @@ const RegisterPage = () => {
               <small className='text-danger'>{errors.password && touched.password && errors.password}</small>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formRegisterRPassword">
               <Form.Label>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
                   <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />

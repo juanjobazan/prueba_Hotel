@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import clienteAxios, { config } from '../../utils/axiosCliente';
+import { NavLink } from 'react-router-dom';
 
 const DetalleCompra = () => {
 
@@ -58,7 +59,8 @@ const DetalleCompra = () => {
                           <td>{reser.capacidad}</td>
                           <td>{reser.reservas}</td>
                           <td>$AR-{reser.precio}</td>
-                          <Button variant='warning' >Pagar</Button>
+                          <NavLink to='/*' className={'btn btn-outline-warning'}>Pagar</NavLink>
+                          
                       </tr>
                           )      
                             }
@@ -87,7 +89,8 @@ const DetalleCompra = () => {
                                         <td>{servi.codigo}</td>
                                         <td>{servi.descripcion}</td>
                                         <td>$AR-{servi.precio}</td>
-                                        <Button variant='warning' >Pagar</Button>
+                                        <NavLink to='/*' className={'btn btn-outline-warning'}>Pagar</NavLink>
+                                       
 
 
 

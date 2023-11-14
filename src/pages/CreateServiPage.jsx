@@ -54,21 +54,21 @@ const CreateServiPage = () => {
                     <div className="d-flex justify-content-center mt-5 formulario">
                         <Form className="w-25">
                             <h5 className='mb-3'>Alta de Servicios</h5>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Group className="mb-3" controlId="formSerCodigoId">
                                 <Form.Label>
                                     Codigo</Form.Label>
                                 <Form.Control type="number" name='codigo' value={values.codigo} className={errors.codigo && touched.codigo && errors.codigo && 'is-invalid'} onChange={handleChange} />
                                 <small className='text-danger'> {errors.codigo && touched.codigo && errors.codigo}</small>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Group className="mb-3" controlId="formSerNombreId">
                                 <Form.Label>
                                     Nombre</Form.Label>
                                 <Form.Control type="text" name="nombre" value={values.nombre} className={errors.nombre && touched.nombre && errors.nombre && 'is-invalid'} onChange={handleChange} />
                                 <small className='text-danger'>{errors.nombre && touched.nombre && errors.nombre}</small>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Group className="mb-3" controlId="formSerDesId">
                                 <Form.Label>
                                     Descripcion</Form.Label>
                                 <Form.Control type="text" name="descripcion" value={values.descripcion} className={errors.descripcion && touched.descripcion && errors.descripcion && 'is-invalid'} onChange={handleChange} />
@@ -77,7 +77,7 @@ const CreateServiPage = () => {
 
 
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Group className="mb-3" controlId="formSerPrecioId">
                                 <Form.Label>
                                     Precio</Form.Label>
                                 <Form.Control type="number" name="precio" value={values.precio} className={errors.precio && touched.precio && errors.precio && 'is-invalid'} onChange={handleChange} />
