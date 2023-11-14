@@ -11,12 +11,15 @@ const NavbarC = () => {
   const role = JSON.parse(localStorage.getItem('role'))
 
   const handleClick = () => {
+    
     localStorage.removeItem('token')
     localStorage.removeItem('role')
     localStorage.removeItem('id')
-     navigate('/')
+    setTimeout(() => {
+      navigate('/')
+    }, 1000);
   }
-  
+
   return (
     <>
       <Navbar expand="lg" className="color-nav-personalizado">
@@ -25,7 +28,7 @@ const NavbarC = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {
-              token && role ==='user'
+              token && role === 'user'
                 ?
                 <Nav className="me-auto">
                   <NavLink to={token ? "/user" : "/"} className={'nav-link'}>Inicio</NavLink>
@@ -34,28 +37,28 @@ const NavbarC = () => {
                   <NavLink to="/compra" className={'nav-link'}>Mis Reservas</NavLink>
                 </Nav>
                 :
-                token && role ==='admin'
-                ?
-                <Nav className="me-auto">
-                  <NavLink to="/admin" className={'nav-link'}>Inicio</NavLink>
-                  <NavLink to="/adminHabi" className={'nav-link'}>Habitaciones</NavLink>
-                  <NavLink to="/adminHabiCreate" className={'nav-link'}>+ Habitaciones</NavLink>
-                  <NavLink to="/adminServi" className={'nav-link'}>Servicios</NavLink>
-                  <NavLink to="/adminServiCreate" className={'nav-link'}>+ Servicios</NavLink>
-                  <NavLink to="/adminUser" className={'nav-link'}>Usuarios</NavLink>
-                  <NavLink to="/imageHabiAdmin" className={'nav-link'}>Imagenes</NavLink>
-            
+                token && role === 'admin'
+                  ?
+                  <Nav className="me-auto">
+                    <NavLink to="/admin" className={'nav-link'}>Inicio</NavLink>
+                    <NavLink to="/adminHabi" className={'nav-link'}>Habitaciones</NavLink>
+                    <NavLink to="/adminHabiCreate" className={'nav-link'}>+ Habitaciones</NavLink>
+                    <NavLink to="/adminServi" className={'nav-link'}>Servicios</NavLink>
+                    <NavLink to="/adminServiCreate" className={'nav-link'}>+ Servicios</NavLink>
+                    <NavLink to="/adminUser" className={'nav-link'}>Usuarios</NavLink>
+                    <NavLink to="/imageHabiAdmin" className={'nav-link'}>Imagenes</NavLink>
 
-                </Nav>
-                :
-                <Nav className="me-auto">
-                <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
-                <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
-                <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
-                
-                
 
-              </Nav>
+                  </Nav>
+                  :
+                  <Nav className="me-auto">
+                    <NavLink to="/" className={'nav-link'}>Inicio</NavLink>
+                    <NavLink to="/about" className={'nav-link'}>Nosotros</NavLink>
+                    <NavLink to="/contact" className={'nav-link'}>Contacto</NavLink>
+
+
+
+                  </Nav>
 
             }
 

@@ -10,8 +10,10 @@ const FooterC = () => {
         <div className="container">
             <div className="row text-center">
                 <div className="col-sm-12 col-md-6 col-lg-4">
-                    <NavLink to="/*"></NavLink>
+                    
+                    <NavLink to="/">
                     <img src='https://nossahotel.com/wp-content/uploads/2022/12/NOSSA-logo-wh-29.png' width="100" height="60"></img>
+                    </NavLink>
                     <h5 className="text-dark">Wsp: 3815396425</h5>
                     <h5 className="text-dark">SgH@gmail.com</h5>
                 </div>

@@ -4,6 +4,7 @@ import Image from 'react-bootstrap/Image';
 const ImagesC = ({arrayHabi}) => {
   return (
   <>
+  <div className='my-3 '>
   {
     arrayHabi.map((habi)=>
     
@@ -12,6 +13,8 @@ const ImagesC = ({arrayHabi}) => {
   
   )
   }
+  </div>
+
 
   </>
   )

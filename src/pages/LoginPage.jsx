@@ -15,7 +15,7 @@ const LoginPage = () => {
       const res = await clienteAxios.post('/user/login', values,config)
     
       if (res.data?.token) {
-        console.log(res)
+      
         localStorage.setItem('token', JSON.stringify(res.data.token))
         localStorage.setItem('role', JSON.stringify(res.data.role))
         localStorage.setItem('id',JSON.stringify(res.data.id))
@@ -61,20 +61,20 @@ const LoginPage = () => {
                 <Form>
                   <img src='https://nossahotel.com/wp-content/uploads/2022/12/NOSSA-logo-wh-29.png' width="100" height="60"></img>
                   <h5>Inicio de Sesion</h5>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Group className="mb-3" controlId="FromUsuarioID">
                     <Form.Label>Usuario</Form.Label>
                     <Form.Control type="text" name='user' value={values.user} className={errors.user && touched.user && errors.user && 'is-invalid'} onChange={handleChange} maxLength={18} />
                     <small className='text-danger'>{errors.user && touched.user && errors.user}</small>
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Group className="mb-3" controlId="FromUsuarioPassId">
                     <Form.Label>Contraseña</Form.Label>
                     <Form.Control type="password" name='password' value={values.password} className={errors.password && touched.password && errors.password && 'is-invalid'} onChange={handleChange} maxLength={18} />
                     <small className='text-danger'>{errors.password && touched.password && errors.password}</small>
                   </Form.Group>
                   <Button className='w-100 my-3' type='submit' onClick={handleSubmit}>Iniciar Sesion</Button>
                   <hr />
-                  <NavLink to='/' className='nav-link' >Recuperar Contraseña</NavLink>
+                  <NavLink to='/*' className='nav-link' >Recuperar Contraseña</NavLink>
                   <hr />
                   <small>Iniciar Sesion con</small>
                   <br />

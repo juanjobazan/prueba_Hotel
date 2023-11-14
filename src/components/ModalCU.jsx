@@ -78,15 +78,15 @@ try {
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="fromUserId">
                                     <Form.Label>Usuario</Form.Label>
                                     <Form.Control type="text" name='user' placeholder="name@example.com" value={usua?.user} onChange={handleChange} disabled />
                                 </Form.Group>
 
 
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Group className="mb-3" controlId="formUserRoleId">
                                     <Form.Label>Role</Form.Label>
-                                    <Form.Control type="text" name='role' placeholder="name@example.com" value={usua?.role} onChange={handleChange} />
+                                    <Form.Control type="text" name='role' placeholder="Ingrese el tipo de Rol: User - Admin" value={usua?.role} onChange={handleChange} />
                                 </Form.Group>
 
                             </Form>

@@ -30,10 +30,10 @@ const UserPage = () => {
     <>
       <Container className='main d-flex'>
         <Row>
-          <h4>Habitaciones</h4>
+          <h4 className='text-center py-3'>Habitaciones</h4>
           <hr />
           <CardsC arrayHabi={habi} />
-          <h4>Servicios</h4>
+          <h4 className='text-center py-3'>Servicios</h4>
           <hr />
           <ServC arraySer={servi} />
           <hr />

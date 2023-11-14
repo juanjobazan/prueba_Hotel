@@ -6,8 +6,8 @@ const ServC = ({arraySer}) => {
   <>
 {
   arraySer.map((servi)=> 
-    <Card key={servi.id} style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={servi.imagen} className='h-50' />
+    <Card key={servi.id} style={{ width: '18rem' }} className='my-3 mx-3 mt-2 mb-3 m-3'>
+  <Card.Img variant="top" src={servi.imagen} className='h-50 my-2 mx-2 py-2 px-2 mt-2' />
   <Card.Body>
     <Card.Title>{servi.nombre} - {servi.codigo}</Card.Title>
     <Card.Text>
